@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Setup | InterviewCoach AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #080b14;
+            color: white;
+            padding: 35px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .back {
+            display: inline-block;
+            color: #858997;
+            text-decoration: none;
+            margin-bottom: 35px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .header .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: #858997;
+            font-size: 16px;
+        }
+
+        .card {
+            background: #111624;
+            border: 1px solid #202535;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .card h2 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .option {
+            position: relative;
+        }
+
+        .option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .option label {
+            display: block;
+            padding: 22px 15px;
+            background: #0c101b;
+            border: 1px solid #292e3e;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option label:hover {
+            border-color: #6250c7;
+            transform: translateY(-2px);
+        }
+
+        .option input:checked + label {
+            border-color: #7c5cff;
+            background: #17142b;
+            box-shadow: 0 0 20px rgba(124, 92, 255, 0.12);
+        }
+
+        .option-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .option-title {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .option-description {
+            display: block;
+            color: #777c8c;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .start-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .start-btn {
+            border: none;
+            background: #7c5cff;
+            color: white;
+            padding: 16px 45px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            background: #6b4bea;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(124, 92, 255, 0.25);
+        }
+
+        .note {
+            margin-top: 15px;
+            color: #626778;
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="dashboard.html" class="back">
+        ← Back to Dashboard
+    </a>
+
+    <div class="header">
+
+        <div class="icon">🎤</div>
+
+        <h1>Set Up Your Interview</h1>
+
+        <p>
+            Customize your practice session before you begin.
+        </p>
+
+    </div>
+
+
+    <form id="setupForm">
+
+        <!-- INTERVIEW TYPE -->
+
+        <div class="card">
+
+            <h2>1. Choose Interview Type</h2>
+
+            <div class="options">
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="type"
+                        id="hr"
+                        value="HR"
+                        checked
+                    >
+
+                    <label for="hr">
+
+                        <span class="option-icon">👥</span>
+
+                        <span class="option-title">
+                            HR Interview
+                        </span>
+
+                        <span class="option-description">
+                            Behavioral and personality questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="type"
+                        id="technical"
+                        value="Technical"
+                    >
+
+                    <label for="technical">
+
+                        <span class="option-icon">💻</span>
+
+                        <span class="option-title">
+                            Technical
+                        </span>
+
+                        <span class="option-description">
+                            Technical and subject-based questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="type"
+                        id="mixed"
+                        value="Mixed"
+                    >
+
+                    <label for="mixed">
+
+                        <span class="option-icon">🧠</span>
+
+                        <span class="option-title">
+                            Mixed
+                        </span>
+
+                        <span class="option-description">
+                            Combination of HR and technical questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DIFFICULTY -->
+
+        <div class="card">
+
+            <h2>2. Select Difficulty</h2>
+
+            <div class="options">
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="beginner"
+                        value="Beginner"
+                        checked
+                    >
+
+                    <label for="beginner">
+
+                        <span class="option-icon">🌱</span>
+
+                        <span class="option-title">
+                            Beginner
+                        </span>
+
+                        <span class="option-description">
+                            Basic interview questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="intermediate"
+                        value="Intermediate"
+                    >
+
+                    <label for="intermediate">
+
+                        <span class="option-icon">⚡</span>
+
+                        <span class="option-title">
+                            Intermediate
+                        </span>
+
+                        <span class="option-description">
+                            Moderate interview questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="difficulty"
+                        id="advanced"
+                        value="Advanced"
+                    >
+
+                    <label for="advanced">
+
+                        <span class="option-icon">🔥</span>
+
+                        <span class="option-title">
+                            Advanced
+                        </span>
+
+                        <span class="option-description">
+                            Challenging interview questions
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NUMBER OF QUESTIONS -->
+
+        <div class="card">
+
+            <h2>3. Number of Questions</h2>
+
+            <div class="options">
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="questions"
+                        id="five"
+                        value="5"
+                        checked
+                    >
+
+                    <label for="five">
+
+                        <span class="option-icon">5️⃣</span>
+
+                        <span class="option-title">
+                            5 Questions
+                        </span>
+
+                        <span class="option-description">
+                            Quick practice session
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="questions"
+                        id="ten"
+                        value="10"
+                    >
+
+                    <label for="ten">
+
+                        <span class="option-icon">🔟</span>
+
+                        <span class="option-title">
+                            10 Questions
+                        </span>
+
+                        <span class="option-description">
+                            Standard interview
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="questions"
+                        id="fifteen"
+                        value="15"
+                    >
+
+                    <label for="fifteen">
+
+                        <span class="option-icon">🏆</span>
+
+                        <span class="option-title">
+                            15 Questions
+                        </span>
+
+                        <span class="option-description">
+                            Full practice session
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="start-section">
+
+            <button type="submit" class="start-btn">
+                Start Interview →
+            </button>
+
+            <p class="note">
+                You can change these settings for your next practice session.
+            </p>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    document
+        .getElementById("setupForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const type =
+                document.querySelector(
+                    'input[name="type"]:checked'
+                ).value;
+
+            const difficulty =
+                document.querySelector(
+                    'input[name="difficulty"]:checked'
+                ).value;
+
+            const questions =
+                document.querySelector(
+                    'input[name="questions"]:checked'
+                ).value;
+
+            // Save interview settings
+            localStorage.setItem(
+                "interviewType",
+                type
+            );
+
+            localStorage.setItem(
+                "interviewDifficulty",
+                difficulty
+            );
+
+            localStorage.setItem(
+                "questionCount",
+                questions
+            );
+
+            // Go to interview page
+            window.location.href = "interview.html";
+
+        });
+
+</script>
+
+</body>
+</html>

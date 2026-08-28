@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | InterviewCoach AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #080b14;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        .glow {
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #5b3df5;
+            filter: blur(180px);
+            opacity: 0.18;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .logo span {
+            color: #8c75ff;
+        }
+
+        .card {
+            background: rgba(17, 22, 36, 0.95);
+            border: 1px solid #272c3d;
+            border-radius: 18px;
+            padding: 38px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .card h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #9295a3;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #c6c8d2;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            background: #0b0f1b;
+            border: 1px solid #2b3040;
+            border-radius: 9px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #7c5cff;
+            box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.12);
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 9px;
+            background: #7c5cff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .create-btn:hover {
+            background: #6b4bea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 92, 255, 0.25);
+        }
+
+        .login {
+            text-align: center;
+            color: #9295a3;
+            font-size: 14px;
+            margin-top: 25px;
+        }
+
+        .login a {
+            color: #9b8aff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #777c8d;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .terms {
+            color: #6f7382;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow"></div>
+
+    <div class="container">
+
+        <div class="logo">
+            Interview<span>Coach</span> AI
+        </div>
+
+        <div class="card">
+
+            <h1>Create your account 🚀</h1>
+
+            <p class="subtitle">
+                Start practicing smarter and improve your interview skills.
+            </p>
+
+            <form id="registerForm">
+
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Target Role</label>
+
+                    <select id="role" required>
+
+                        <option value="">
+                            Select your target role
+                        </option>
+
+                        <option value="AI/ML Intern">
+                            AI / ML Intern
+                        </option>
+
+                        <option value="Software Developer">
+                            Software Developer
+                        </option>
+
+                        <option value="Web Developer">
+                            Web Developer
+                        </option>
+
+                        <option value="Data Analyst">
+                            Data Analyst
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <p class="terms">
+                    By creating an account, you agree to use
+                    InterviewCoach AI for interview preparation.
+                </p>
+
+                <button type="submit" class="create-btn">
+                    Create Account →
+                </button>
+
+            </form>
+
+            <div class="login">
+                Already have an account?
+                <a href="login.html">Sign In</a>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="back">
+            ← Back to Home
+        </a>
+
+    </div>
+
+    <script>
+
+        document
+            .getElementById("registerForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const password =
+                    document.getElementById("password").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+                if (password !== confirmPassword) {
+
+                    alert("Passwords do not match!");
+
+                    return;
+                }
+
+                alert(
+                    "Registration UI is working! Firebase authentication will be connected soon."
+                );
+
+            });
+
+    </script>
+
+</body>
+</html>

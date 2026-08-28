@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | InterviewCoach AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: #0d111d;
+            border-right: 1px solid #202535;
+            padding: 25px 18px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 45px;
+            padding-left: 10px;
+        }
+
+        .logo span {
+            color: #8c75ff;
+        }
+
+        .menu-title {
+            color: #5f6474;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px 12px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 13px 12px;
+            margin-bottom: 6px;
+            color: #9295a3;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #171b2b;
+            color: white;
+        }
+
+        .nav-item.active {
+            border-left: 3px solid #7c5cff;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 240px;
+            padding: 35px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #858997;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background: #7c5cff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* START INTERVIEW */
+
+        .start-card {
+            background: linear-gradient(135deg, #15132b, #111624);
+            border: 1px solid #2b2948;
+            border-radius: 18px;
+            padding: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .start-card::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: #6c4cff;
+            filter: blur(120px);
+            opacity: 0.15;
+            right: 50px;
+            top: -80px;
+        }
+
+        .start-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .start-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .start-content p {
+            color: #9295a3;
+            max-width: 550px;
+            line-height: 1.5;
+        }
+
+        .start-btn {
+            position: relative;
+            z-index: 2;
+            background: #7c5cff;
+            color: white;
+            text-decoration: none;
+            padding: 14px 23px;
+            border-radius: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .start-btn:hover {
+            background: #6b4bea;
+        }
+
+        /* STAT CARDS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #111624;
+            border: 1px solid #202535;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .stat-icon {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .stat-value {
+            font-size: 27px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            color: #777c8c;
+            font-size: 13px;
+        }
+
+        /* CONTENT GRID */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: #111624;
+            border: 1px solid #202535;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .panel-header h2 {
+            font-size: 18px;
+        }
+
+        .view-all {
+            color: #9b8aff;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        /* INTERVIEW HISTORY */
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #202535;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-info h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .history-info p {
+            color: #777c8c;
+            font-size: 12px;
+        }
+
+        .score {
+            font-weight: bold;
+            color: #9d8dff;
+        }
+
+        /* SKILLS */
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .skill-info span:last-child {
+            color: #9b8aff;
+        }
+
+        .progress {
+            height: 7px;
+            background: #242838;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #7c5cff;
+            border-radius: 20px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #202535;
+            }
+
+            .logout {
+                position: static;
+                margin-top: 15px;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 25px 18px;
+            }
+
+            .start-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .profile {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Interview<span>Coach</span> AI
+        </div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+        <a href="dashboard.html" class="nav-item active">
+            🏠 Dashboard
+        </a>
+
+        <a href="#" class="nav-item">
+            🎤 Practice Interview
+        </a>
+
+        <a href="#" class="nav-item">
+            📊 Performance
+        </a>
+
+        <a href="#" class="nav-item">
+            📝 Interview History
+        </a>
+
+        <div class="menu-title" style="margin-top: 30px;">
+            Account
+        </div>
+
+        <a href="#" class="nav-item">
+            👤 Profile
+        </a>
+
+        <a href="#" class="nav-item">
+            ⚙️ Settings
+        </a>
+
+        <a href="index.html" class="nav-item logout">
+            ↪ Logout
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="welcome">
+
+                <h1>Good evening 👋</h1>
+
+                <p>
+                    Ready to sharpen your interview skills?
+                </p>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <div>
+                    <strong>Student</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- START INTERVIEW -->
+
+        <section class="start-card">
+
+            <div class="start-content">
+
+                <h2>Ready for your next interview?</h2>
+
+                <p>
+                    Practice realistic interview questions and
+                    receive AI-powered feedback on your answers.
+                </p>
+
+            </div>
+
+            <a href="#" class="start-btn">
+                Start Interview →
+            </a>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎤
+                </div>
+
+                <div class="stat-value">
+                    12
+                </div>
+
+                <div class="stat-label">
+                    Interviews Completed
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div class="stat-value">
+                    84%
+                </div>
+
+                <div class="stat-label">
+                    Average Score
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div class="stat-value">
+                    7
+                </div>
+
+                <div class="stat-label">
+                    Day Streak
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📈
+                </div>
+
+                <div class="stat-value">
+                    +18%
+                </div>
+
+                <div class="stat-label">
+                    Improvement
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOWER CONTENT -->
+
+        <section class="content-grid">
+
+
+            <!-- HISTORY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>Recent Interviews</h2>
+
+                    <a href="#" class="view-all">
+                        View all
+                    </a>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-info">
+
+                        <h3>Technical Interview</h3>
+
+                        <p>
+                            Software Development · Today
+                        </p>
+
+                    </div>
+
+                    <div class="score">
+                        88%
+                    </div>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-info">
+
+                        <h3>HR Interview</h3>
+
+                        <p>
+                            General · Yesterday
+                        </p>
+
+                    </div>
+
+                    <div class="score">
+                        82%
+                    </div>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-info">
+
+                        <h3>AI / ML Interview</h3>
+
+                        <p>
+                            Technical · 3 days ago
+                        </p>
+
+                    </div>
+
+                    <div class="score">
+                        79%
+                    </div>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-info">
+
+                        <h3>General Interview</h3>
+
+                        <p>
+                            Mixed · 5 days ago
+                        </p>
+
+                    </div>
+
+                    <div class="score">
+                        87%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>Skill Performance</h2>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-info">
+
+                        <span>Communication</span>
+                        <span>88%</span>
+
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            class="progress-bar"
+                            style="width: 88%;">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-info">
+
+                        <span>Technical Knowledge</span>
+                        <span>82%</span>
+
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            class="progress-bar"
+                            style="width: 82%;">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-info">
+
+                        <span>Problem Solving</span>
+                        <span>76%</span>
+
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            class="progress-bar"
+                            style="width: 76%;">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-info">
+
+                        <span>Confidence</span>
+                        <span>72%</span>
+
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            class="progress-bar"
+                            style="width: 72%;">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

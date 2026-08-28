@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview | InterviewCoach AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #080b14;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #8c75ff;
+        }
+
+        .question-count {
+            color: #9295a3;
+            font-size: 14px;
+        }
+
+        /* PROGRESS */
+
+        .progress-container {
+            width: 100%;
+            height: 7px;
+            background: #202535;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 20%;
+            height: 100%;
+            background: #7c5cff;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        /* QUESTION CARD */
+
+        .question-card {
+            background: #111624;
+            border: 1px solid #202535;
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #19152f;
+            color: #a99cff;
+            border: 1px solid #39305e;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 27px;
+            line-height: 1.4;
+            margin-bottom: 28px;
+        }
+
+        /* ANSWER */
+
+        textarea {
+            width: 100%;
+            min-height: 190px;
+            resize: vertical;
+            background: #0b0f1b;
+            border: 1px solid #2b3040;
+            border-radius: 12px;
+            padding: 18px;
+            color: white;
+            font-size: 15px;
+            line-height: 1.6;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #7c5cff;
+            box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.12);
+        }
+
+        textarea::placeholder {
+            color: #555b6c;
+        }
+
+        .answer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 9px;
+            color: #626778;
+            font-size: 12px;
+        }
+
+        /* BUTTON */
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .submit-btn {
+            border: none;
+            background: #7c5cff;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #6b4bea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 92, 255, 0.25);
+        }
+
+        /* FEEDBACK */
+
+        .feedback {
+            display: none;
+            margin-top: 25px;
+            background: #0d1220;
+            border: 1px solid #282d3d;
+            border-radius: 14px;
+            padding: 25px;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feedback-title h2 {
+            font-size: 18px;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a99cff;
+        }
+
+        .feedback-box {
+            margin-bottom: 15px;
+        }
+
+        .feedback-box h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .feedback-box p {
+            color: #9295a3;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .next-btn {
+            width: 100%;
+            border: none;
+            background: #202535;
+            color: white;
+            padding: 13px;
+            border-radius: 9px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .next-btn:hover {
+            background: #2a3042;
+        }
+
+        /* EXIT */
+
+        .exit {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #666b7a;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .exit:hover {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .question-card {
+                padding: 23px;
+            }
+
+            .question {
+                font-size: 22px;
+            }
+
+            .topbar {
+                margin-bottom: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="logo">
+            Interview<span>Coach</span> AI
+        </div>
+
+        <div class="question-count" id="questionCount">
+            Question 1 / 5
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <div class="question-card">
+
+        <div class="tag" id="questionType">
+            HR Interview
+        </div>
+
+        <h1
+            class="question"
+            id="question">
+            Tell me about yourself.
+        </h1>
+
+
+        <!-- ANSWER FORM -->
+
+        <form id="answerForm">
+
+            <textarea
+                id="answer"
+                placeholder="Type your answer here..."
+                required>
+            </textarea>
+
+            <div class="answer-info">
+
+                <span>
+                    Be clear and specific.
+                </span>
+
+                <span id="characterCount">
+                    0 characters
+                </span>
+
+            </div>
+
+            <div class="button-container">
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitBtn">
+
+                    Analyze Answer →
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            class="feedback"
+            id="feedback">
+
+            <div class="feedback-title">
+
+                <h2>
+                    🤖 AI Feedback
+                </h2>
+
+                <div
+                    class="score"
+                    id="score">
+                    0/100
+                </div>
+
+            </div>
+
+
+            <div class="feedback-box">
+
+                <h3>
+                    💡 Analysis
+                </h3>
+
+                <p id="analysis">
+                </p>
+
+            </div>
+
+
+            <div class="feedback-box">
+
+                <h3>
+                    ✅ Strength
+                </h3>
+
+                <p id="strength">
+                </p>
+
+            </div>
+
+
+            <div class="feedback-box">
+
+                <h3>
+                    📈 Improvement
+                </h3>
+
+                <p id="improvement">
+                </p>
+
+            </div>
+
+
+            <button
+                class="next-btn"
+                id="nextBtn">
+
+                Next Question →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="dashboard.html"
+        class="exit">
+
+        ← Exit Interview
+
+    </a>
+
+</div>
+
+
+<script>
+
+    // --------------------------------
+    // GET INTERVIEW SETTINGS
+    // --------------------------------
+
+    const interviewType =
+        localStorage.getItem("interviewType") || "HR";
+
+    const difficulty =
+        localStorage.getItem("interviewDifficulty") || "Beginner";
+
+    const questionCount =
+        parseInt(
+            localStorage.getItem("questionCount")
+        ) || 5;
+
+
+    // --------------------------------
+    // QUESTION DATABASE
+    // --------------------------------
+
+    const questionBank = {
+
+        HR: [
+
+            {
+                question: "Tell me about yourself.",
+                keywords: [
+                    "education",
+                    "skills",
+                    "experience",
+                    "project",
+                    "goal"
+                ]
+            },
+
+            {
+                question: "What are your strengths?",
+                keywords: [
+                    "communication",
+                    "teamwork",
+                    "problem",
+                    "learning",
+                    "adapt"
+                ]
+            },
+
+            {
+                question: "What is one weakness you are working on?",
+                keywords: [
+                    "improve",
+                    "learning",
+                    "practice",
+                    "development",
+                    "better"
+                ]
+            },
+
+            {
+                question: "Why should we hire you?",
+                keywords: [
+                    "skills",
+                    "experience",
+                    "learn",
+                    "contribute",
+                    "team"
+                ]
+            },
+
+            {
+                question: "Where do you see yourself in five years?",
+                keywords: [
+                    "career",
+                    "growth",
+                    "skills",
+                    "experience",
+                    "goal"
+                ]
+            }
+
+        ],
+
+
+        Technical: [
+
+            {
+                question: "What is Object-Oriented Programming?",
+                keywords: [
+                    "object",
+                    "class",
+                    "inheritance",
+                    "polymorphism",
+                    "encapsulation"
+                ]
+            },
+
+            {
+                question: "What is machine learning?",
+                keywords: [
+                    "data",
+                    "algorithm",
+                    "model",
+                    "training",
+                    "prediction"
+                ]
+            },
+
+            {
+                question: "What is the difference between supervised and unsupervised learning?",
+                keywords: [
+                    "label",
+                    "data",
+                    "classification",
+                    "clustering",
+                    "training"
+                ]
+            },
+
+            {
+                question: "What is a database?",
+                keywords: [
+                    "data",
+                    "table",
+                    "record",
+                    "store",
+                    "query"
+                ]
+            },
+
+            {
+                question: "What is an API?",
+                keywords: [
+                    "application",
+                    "interface",
+                    "request",
+                    "response",
+                    "server"
+                ]
+            }
+
+        ],
+
+
+        Mixed: [
+
+            {
+                question: "Tell me about yourself and your technical skills.",
+                keywords: [
+                    "education",
+                    "skills",
+                    "python",
+                    "java",
+                    "project"
+                ]
+            },
+
+            {
+                question: "Explain a technical project you have worked on.",
+                keywords: [
+                    "project",
+                    "technology",
+                    "problem",
+                    "solution",
+                    "result"
+                ]
+            },
+
+            {
+                question: "How do you handle difficult problems?",
+                keywords: [
+                    "problem",
+                    "research",
+                    "solution",
+                    "team",
+                    "learn"
+                ]
+            },
+
+            {
+                question: "Why are you interested in technology?",
+                keywords: [
+                    "technology",
+                    "learning",
+                    "innovation",
+                    "career",
+                    "interest"
+                ]
+            },
+
+            {
+                question: "What technical skill would you like to improve?",
+                keywords: [
+                    "skill",
+                    "improve",
+                    "practice",
+                    "learning",
+                    "goal"
+                ]
+            }
+
+        ]
+
+    };
+
+
+    // --------------------------------
+    // SELECT QUESTIONS
+    // --------------------------------
+
+    let questions =
+        questionBank[interviewType] ||
+        questionBank.HR;
+
+
+    // Repeat questions if user selected
+    // more questions than currently available.
+
+    while (questions.length < questionCount) {
+
+        questions =
+            questions.concat(
+                questions
+            );
+
+    }
+
+    questions =
+        questions.slice(0, questionCount);
+
+
+    // --------------------------------
+    // VARIABLES
+    // --------------------------------
+
+    let currentQuestion = 0;
+
+    let totalScore = 0;
+
+    let scores = [];
+
+
+    // --------------------------------
+    // ELEMENTS
+    // --------------------------------
+
+    const questionElement =
+        document.getElementById("question");
+
+    const questionCountElement =
+        document.getElementById("questionCount");
+
+    const questionTypeElement =
+        document.getElementById("questionType");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    const answerElement =
+        document.getElementById("answer");
+
+    const answerForm =
+        document.getElementById("answerForm");
+
+    const feedback =
+        document.getElementById("feedback");
+
+    const scoreElement =
+        document.getElementById("score");
+
+    const analysisElement =
+        document.getElementById("analysis");
+
+    const strengthElement =
+        document.getElementById("strength");
+
+    const improvementElement =
+        document.getElementById("improvement");
+
+    const nextButton =
+        document.getElementById("nextBtn");
+
+    const submitButton =
+        document.getElementById("submitBtn");
+
+    const characterCount =
+        document.getElementById("characterCount");
+
+
+    // --------------------------------
+    // SHOW QUESTION
+    // --------------------------------
+
+    function showQuestion() {
+
+        const current =
+            questions[currentQuestion];
+
+        questionElement.textContent =
+            current.question;
+
+        questionCountElement.textContent =
+            "Question " +
+            (currentQuestion + 1) +
+            " / " +
+            questionCount;
+
+        questionTypeElement.textContent =
+            interviewType +
+            " Interview";
+
+        const progress =
+            ((currentQuestion + 1) /
+            questionCount) * 100;
+
+        progressBar.style.width =
+            progress + "%";
+
+        answerElement.value = "";
+
+        characterCount.textContent =
+            "0 characters";
+
+        feedback.classList.remove("show");
+
+        submitButton.style.display =
+            "block";
+
+        answerElement.disabled =
+            false;
+
+        submitButton.disabled =
+            false;
+
+    }
+
+
+    // --------------------------------
+    // CHARACTER COUNTER
+    // --------------------------------
+
+    answerElement.addEventListener(
+        "input",
+        function() {
+
+            characterCount.textContent =
+                answerElement.value.length +
+                " characters";
+
+        }
+    );
+
+
+    // --------------------------------
+    // ANALYZE ANSWER
+    // --------------------------------
+
+    answerForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            const answer =
+                answerElement.value
+                    .trim()
+                    .toLowerCase();
+
+            if (answer.length < 10) {
+
+                alert(
+                    "Please provide a little more detail in your answer."
+                );
+
+                return;
+
+            }
+
+
+            const current =
+                questions[currentQuestion];
+
+
+            // Count matching keywords
+
+            let matches = 0;
+
+            current.keywords.forEach(
+                function(keyword) {
+
+                    if (
+                        answer.includes(
+                            keyword.toLowerCase()
+                        )
+                    ) {
+
+                        matches++;
+
+                    }
+
+                }
+            );
+
+
+            // Calculate score
+
+            let score =
+                40 +
+                (matches * 10);
+
+
+            // Answer length bonus
+
+            if (answer.length >= 80) {
+
+                score += 10;
+
+            }
+
+            if (answer.length >= 150) {
+
+                score += 10;
+
+            }
+
+
+            // Maximum score
+
+            if (score > 100) {
+
+                score = 100;
+
+            }
+
+
+            scores.push(score);
+
+            totalScore += score;
+
+
+            // Feedback
+
+            let analysis = "";
+
+            let strength = "";
+
+            let improvement = "";
+
+
+            if (score >= 80) {
+
+                analysis =
+                    "Your answer covers several important points and shows good understanding.";
+
+                strength =
+                    "Good content and relevant information.";
+
+                improvement =
+                    "Try adding a specific example to make your answer even stronger.";
+
+            }
+
+            else if (score >= 60) {
+
+                analysis =
+                    "Your answer addresses the question, but some important points could be explained in more detail.";
+
+                strength =
+                    "You have addressed the main idea.";
+
+                improvement =
+                    "Add more relevant details, examples, or practical experience.";
+
+            }
+
+            else {
+
+                analysis =
+                    "Your answer needs more detail and should focus more directly on the question.";
+
+                strength =
+                    "You have started answering the question.";
+
+                improvement =
+                    "Try giving a structured answer with examples and key concepts.";
+
+            }
+
+
+            scoreElement.textContent =
+                score + "/100";
+
+            analysisElement.textContent =
+                analysis;
+
+            strengthElement.textContent =
+                strength;
+
+            improvementElement.textContent =
+                improvement;
+
+
+            feedback.classList.add("show");
+
+
+            answerElement.disabled =
+                true;
+
+            submitButton.style.display =
+                "none";
+
+
+            if (
+                currentQuestion ===
+                questionCount - 1
+            ) {
+
+                nextButton.textContent =
+                    "View Final Results →";
+
+            }
+
+        }
+    );
+
+
+    // --------------------------------
+    // NEXT QUESTION
+    // --------------------------------
+
+    nextButton.addEventListener(
+        "click",
+        function() {
+
+            if (
+                currentQuestion ===
+                questionCount - 1
+            ) {
+
+                // Calculate final average
+
+                const average =
+                    Math.round(
+                        totalScore /
+                        scores.length
+                    );
+
+
+                localStorage.setItem(
+                    "finalScore",
+                    average
+                );
+
+                localStorage.setItem(
+                    "totalQuestions",
+                    questionCount
+                );
+
+                localStorage.setItem(
+                    "interviewCompleted",
+                    "true"
+                );
+
+
+                window.location.href =
+                    "results.html";
+
+                return;
+
+            }
+
+
+            currentQuestion++;
+
+            showQuestion();
+
+        }
+    );
+
+
+    // --------------------------------
+    // START
+    // --------------------------------
+
+    showQuestion();
+
+</script>
+
+</body>
+</html>

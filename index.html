@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InterviewCoach AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .login-btn {
+            border: 1px solid #7c5cff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: #5b3df5;
+            filter: blur(180px);
+            opacity: 0.18;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(124,92,255,0.5);
+            border-radius: 30px;
+            color: #b8aaff;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        h1 span {
+            color: #8c75ff;
+        }
+
+        .hero p {
+            color: #a7a9b4;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 35px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: #7c5cff;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124,92,255,0.35);
+        }
+
+        .secondary-btn {
+            display: inline-block;
+            border: 1px solid #303442;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background: #151925;
+        }
+
+        /* FEATURES */
+
+        .features {
+            padding: 80px 8%;
+            background: #0c101b;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #9295a3;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: #111624;
+            border: 1px solid #202535;
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #6250c7;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #9295a3;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            color: #666a78;
+            border-top: 1px solid #202535;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            Interview<span>Coach</span> AI
+        </div>
+
+        <div class="links">
+            <a href="#features">Features</a>
+            <a href="#">How It Works</a>
+            <a href="#" class="login-btn">Login</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="glow"></div>
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ AI-Powered Interview Preparation
+            </div>
+
+            <h1>
+                Prepare Smarter.<br>
+                <span>Interview Better.</span>
+            </h1>
+
+            <p>
+                Practice interview questions, improve your answers,
+                and receive intelligent feedback to become more
+                confident in your next interview.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#" class="primary-btn">
+                    Start Interview →
+                </a>
+
+                <a href="#features" class="secondary-btn">
+                    Explore Features
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features" id="features">
+
+        <div class="section-title">
+
+            <h2>Everything you need to prepare</h2>
+
+            <p>
+                Practice, analyze and improve your interview performance.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="card">
+
+                <div class="icon">🤖</div>
+
+                <h3>AI Feedback</h3>
+
+                <p>
+                    Get intelligent feedback on your answers
+                    and discover areas where you can improve.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎯</div>
+
+                <h3>Role-Based Questions</h3>
+
+                <p>
+                    Practice questions based on your selected
+                    career role and interview type.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">📊</div>
+
+                <h3>Performance Analysis</h3>
+
+                <p>
+                    Track your scores and understand your
+                    strengths and areas for improvement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 InterviewCoach AI · Built for Interview Preparation
+
+    </footer>
+
+</body>
+</html>

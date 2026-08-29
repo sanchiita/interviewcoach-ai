@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interview History</title>
+  <style>
+    *{box-sizing:border-box;font-family:Arial}
+    body{margin:0;background:#080b14;color:white}
+    .side{position:fixed;width:220px;height:100vh;background:#0d111d;padding:25px}
+    .side h2{margin-bottom:40px}.side span{color:#8c75ff}
+    .side a{display:block;color:#aaa;text-decoration:none;padding:13px;margin:5px 0}
+    .side a:hover,.active{background:#171b2b;border-radius:8px;color:white!important}
+    main{margin-left:220px;padding:40px}
+    .card{background:#111624;border:1px solid #202535;border-radius:15px;padding:20px}
+    .item{display:flex;justify-content:space-between;padding:20px 5px;border-bottom:1px solid #202535}
+    .item:last-child{border:0}
+    .item p{color:#777;margin:6px 0}
+    .score{color:#9d8dff;font-size:20px;font-weight:bold}
+    @media(max-width:700px){
+      .side{position:relative;width:100%;height:auto}
+      main{margin:0;padding:20px}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="side">
+  <h2>Interview<span>Coach</span> AI</h2>
+
+  <a href="dashboard.html">🏠 Dashboard</a>
+  <a href="interview-setup.html">🎤 Practice Interview</a>
+  <a href="performance.html">📊 Performance</a>
+  <a href="history.html" class="active">📝 History</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="settings.html">⚙️ Settings</a>
+  <a href="index.html">↪ Logout</a>
+</div>
+
+<main>
+  <h1>Interview History</h1>
+  <p>Review your previous interviews.</p>
+
+  <div class="card">
+
+    <div class="item">
+      <div>
+        <b>Technical Interview</b>
+        <p>Software Development · Today</p>
+        <a href="result.html">View Result →</a>
+      </div>
+      <div class="score">88%</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <b>HR Interview</b>
+        <p>General · Yesterday</p>
+        <a href="result.html">View Result →</a>
+      </div>
+      <div class="score">82%</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <b>AI / ML Interview</b>
+        <p>Technical · 3 days ago</p>
+        <a href="result.html">View Result →</a>
+      </div>
+      <div class="score">79%</div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

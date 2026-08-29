@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Settings | InterviewCoach AI</title>
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#080b14;color:white;padding:30px}
+.card{max-width:600px;background:#111624;border:1px solid #202535;
+padding:25px;border-radius:15px}
+.row{display:flex;justify-content:space-between;align-items:center;
+padding:18px 0;border-bottom:1px solid #202535}
+p{color:#888}
+button{background:#7c5cff;color:white;border:0;padding:11px 20px;
+border-radius:8px;cursor:pointer}
+button:hover{background:#6848e8}
+.back{color:#aaa;text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<a class="back" href="dashboard.html">← Dashboard</a>
+
+<h1>⚙️ Settings</h1>
+<p>Customize your Interview Coach experience.</p>
+
+<div class="card">
+
+<div class="row">
+<div><b>🔔 Notifications</b><p>Receive interview reminders</p></div>
+<input type="checkbox" checked>
+</div>
+
+<div class="row">
+<div><b>🤖 AI Feedback</b><p>Show detailed AI suggestions</p></div>
+<input type="checkbox" checked>
+</div>
+
+<div class="row">
+<div><b>🎤 Voice Interview</b><p>Enable voice practice</p></div>
+<input type="checkbox">
+</div>
+
+<div class="row">
+<div><b>📊 Save Results</b><p>Keep your interview history</p></div>
+<input type="checkbox" checked>
+</div>
+
+<br>
+
+<button onclick="save()">Save Changes</button>
+
+</div>
+
+<script>
+function save(){
+alert("Settings saved successfully!");
+}
+</script>
+
+</body>
+</html>

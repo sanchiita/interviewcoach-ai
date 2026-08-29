@@ -4,7 +4,7 @@ import {initializeApp} from
 import {getAuth} from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-const config={
+const firebaseConfig={
  apiKey:"AIzaSyAPmw7O7Dk6QP7Wc4QazUymxV2N2uAvJWY",
  authDomain:"interviewcoach-ai-6af5d.firebaseapp.com",
  projectId:"interviewcoach-ai-6af5d",
@@ -13,4 +13,4 @@ const config={
  appId:"1:492088003056:web:47e800f0fa67f60698f535"
 };
 
-export const auth=getAuth(initializeApp(config));
+export const auth=getAuth(initializeApp(firebaseConfig));
